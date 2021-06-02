@@ -8,6 +8,11 @@ use function Ramsey\Uuid\v1;
 
 class ServicioController extends Controller
 {
+    public function showall(){
+        $servicios = Servicio::all();
+        return $servicios;
+    }
+
     public function showservicesh(){
         $servicio = Servicio::where('city','huanuco')->get();
         return view('Servicio.servicios',compact('servicio'));

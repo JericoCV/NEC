@@ -16,6 +16,8 @@ class CreatePerfilTable extends Migration
         Schema::create('perfil', function (Blueprint $table) {
             $table->id();
             $table->string('profession');
+            $table->string('name');
+            $table->string('lastname');
             $table->integer('userid');
             $table->integer('servicegroup');
             $table->string('ruc')->nullable();

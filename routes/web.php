@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\PerfilController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,4 +32,5 @@ Route::get('{user}/profile',[UsersController::class, 'showuser'])->name('showuse
 Route::get('{user}/editprofile',[UsersController::class, 'edituser'])->name('edituser');
 Route::put('{user}/profile',[UsersController::class, 'updateuser'])->name('updateuser');
 
-Route::get('{user}/profile',[UsersController::class, 'showuser'])->name('showuser');
+Route::get('{user}/register',[PerfilController::class, 'createprofile'])->name('registerp');
+Route::post('{user}/profilepro',[PerfilController::class, 'saveprofile'])->name('saveprofile');

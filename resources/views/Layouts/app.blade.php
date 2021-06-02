@@ -70,7 +70,12 @@
                                     </form>
                                     <a class="dropdown-item" href="{{route('showuser',$user->id)}}">{{__('Profile')}}</a>
                                     <a class="dropdown-item" href="#">{{__('Contracts')}}</a>
-                                    <a class="dropdown-item" href="{{route('registerp',$user->id)}}">{{__('Register as a professional ')}}</a>
+                                    @php($answer = new \App\Http\Controllers\PerfilController())
+                                    @if($answer->searchprofilebyUserId(Auth::user()->id) == 'consumidor')
+                                        <a class="dropdown-item" href="{{route('registerp',$user->id)}}">{{__('Register as a professional ')}}</a>
+                                    @elseif($answer->searchprofilebyUserId(Auth::user()->id) == 'trabajador')
+                                        <a class="dropdown-item" href="#">{{__('Professional profile ')}}</a>
+                                    @endif
                                 </div>
                             </li>
                         @endguest
