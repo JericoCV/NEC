@@ -4,7 +4,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Actualizar') }}</div>
+                    <div class="card-header">{{ __('Registro para trabajadores') }}</div>
 
                     <div class="card-body">
                         <form method="post" action="{{ route('saveprofile',$user) }}">
