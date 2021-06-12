@@ -35,7 +35,7 @@
                             </ul>
                             @foreach($servicio as $service)
                                 <label>
-                                    {{$service->servicename}}<br>
+                                    <a href="{{route('showservice',$service)}}">{{$service->servicename}}</a><br>
                                 </label><br>
                             @endforeach
                     </div>

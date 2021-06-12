@@ -27,6 +27,8 @@ Route::get('/servicio/{servicio}',[ServicioController::class, 'services'])->name
 Route::get('/huanuco',[ServicioController::class, 'showservicesh'])->name('showservicesh');
 Route::get('/pillcomarca',[ServicioController::class, 'showservicesp'])->name('showservicesp');
 Route::get('/amarillis',[ServicioController::class, 'showservicesa'])->name('showservicesa');
+Route::get('/{servicio}/trabajadores',[ServicioController::class, 'service'])->name('showservice');
+
 
 Route::get('{user}/profile',[UsersController::class, 'showuser'])->name('showuser');
 Route::get('{user}/editprofile',[UsersController::class, 'edituser'])->name('edituser');
