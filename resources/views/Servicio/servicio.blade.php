@@ -1,10 +1,24 @@
 @extends('Layouts.app')
 @section('content')
-    <div class="container">
+    <div class="container"style="padding-top: 80px;">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Servicios') }}</div>
+                    <div class="card-header">
+                        @php
+                            switch ($servicio->city){
+                                case 'huanuco':
+                                    $ciudad = 'showservicesh';
+                                    break;
+                                case 'amarillis':
+                                    $ciudad = 'showservicesa';
+                                    break;
+                                case 'pillcomarca':
+                                    $ciudad = 'showservicesp';
+                                    break;
+} @endphp
+                        <a href="{{route($ciudad)}}">{{$servicio->servicename}}</a>
+                    </div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -41,7 +55,17 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
+                        @php ($workers = \App\Http\Controllers\PerfilController::showprofilesbyIdservice($servicio->id))
+                        @if(!empty($workers))
+                            @foreach($workers as $worker)
+                                <label>
+                                    > {{$worker->name}} {{$worker->lastname}}
+                                </label>@endforeach
+                            @else
+                                <label>
+                                    No hay trabajadores aun
+                                </label>
+                            @endif
                     </div>
                 </div>
             </div>

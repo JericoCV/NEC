@@ -1,6 +1,6 @@
 @extends('Layouts.app')
 @section('content')
-    <div class="container">
+    <div class="container"style="padding-top: 80px;">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 {{$user->name}}<br>

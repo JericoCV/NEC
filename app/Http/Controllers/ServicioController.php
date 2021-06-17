@@ -31,6 +31,6 @@ class ServicioController extends Controller
     }
 
     public function service(Servicio $servicio){
-        return view('Servicio.servicio', $servicio);
+        return view('Servicio.servicio', compact('servicio'));
     }
 }

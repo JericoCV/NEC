@@ -45,4 +45,8 @@ class PerfilController extends Controller
         }
         return $respuesta;
     }
+    public static function showprofilesbyIdservice(int $id){
+        $results = Perfil::where('servicegroup',$id)->get();
+        return $results;
+    }
 }

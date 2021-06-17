@@ -36,3 +36,4 @@ Route::put('{user}/profile',[UsersController::class, 'updateuser'])->name('updat
 
 Route::get('{user}/register',[PerfilController::class, 'createprofile'])->name('registerp');
 Route::post('{user}/profilepro',[PerfilController::class, 'saveprofile'])->name('saveprofile');
+
