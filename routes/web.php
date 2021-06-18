@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\ContratoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,4 +37,11 @@ Route::put('{user}/profile',[UsersController::class, 'updateuser'])->name('updat
 
 Route::get('{user}/register',[PerfilController::class, 'createprofile'])->name('registerp');
 Route::post('{user}/profilepro',[PerfilController::class, 'saveprofile'])->name('saveprofile');
+
+Route::get('{worker}/worker',[PerfilController::class, 'showworker'])->name('showworker');
+
+Route::get('{worker}/contract',[ContratoController::class, 'createcontract'])->name('createcontract');
+Route::post('{worker}/contract',[ContratoController::class, 'savecontract'])->name('savecontract');
+
+Route::get('{contract/view}',[ContratoController::class, 'viewcontract'])->name('viewcontract');
 

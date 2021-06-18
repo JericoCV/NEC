@@ -49,4 +49,7 @@ class PerfilController extends Controller
         $results = Perfil::where('servicegroup',$id)->get();
         return $results;
     }
+    public function showworker(Perfil $worker){
+        return view('Profile.workerprofile',compact('worker'));
+    }
 }

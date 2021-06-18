@@ -15,8 +15,8 @@
                                     break;
                                 case 'pillcomarca':
                                     $ciudad = 'showservicesp';
-                                    break;
-} @endphp
+                                    break;}
+                        @endphp
                         <a href="{{route($ciudad)}}">{{$servicio->servicename}}</a>
                     </div>
 
@@ -59,7 +59,7 @@
                         @if(!empty($workers))
                             @foreach($workers as $worker)
                                 <label>
-                                    > {{$worker->name}} {{$worker->lastname}}
+                                    <a href="{{route('showworker',$worker)}}">{{$worker->name}} {{$worker->lastname}}</a>
                                 </label>@endforeach
                             @else
                                 <label>

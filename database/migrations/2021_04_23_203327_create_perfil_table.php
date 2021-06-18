@@ -20,7 +20,7 @@ class CreatePerfilTable extends Migration
             $table->string('lastname');
             $table->integer('userid');
             $table->integer('servicegroup');
-            $table->string('ruc')->nullable();
+            $table->string('image')->nullable();
             $table->string('workplace');
             $table->text('info')->nullable();
             $table->string('price')->nullable();
