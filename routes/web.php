@@ -43,5 +43,6 @@ Route::get('{worker}/worker',[PerfilController::class, 'showworker'])->name('sho
 Route::get('{worker}/contract',[ContratoController::class, 'createcontract'])->name('createcontract');
 Route::post('{worker}/contract',[ContratoController::class, 'savecontract'])->name('savecontract');
 
-Route::get('{contract/view}',[ContratoController::class, 'viewcontract'])->name('viewcontract');
+Route::get('{contract}/view',[ContratoController::class, 'viewcontract'])->name('viewcontract');
+Route::get('{user}/contracts',[ContratoController::class, 'showcontractsbyUser'])->name('mycontracts');
 

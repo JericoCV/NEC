@@ -25,4 +25,9 @@ class ContratoController extends Controller
         $contract->save();
         return redirect()->route('showworker',$worker);
     }
+    public function showcontractsbyUser(User $user){
+        $contracts = Contrato::where('userid',$user->id)->get();
+        return view('Contract.mycontracts',compact('contracts'));
+    }
+
 }

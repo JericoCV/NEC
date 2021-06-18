@@ -44,13 +44,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item"style="color: white;">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}" style="color: white;">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item"style="color: white;">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}" style="color: white;">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -71,7 +71,7 @@
                                         @csrf
                                     </form>
                                     <a class="dropdown-item" href="{{route('showuser',$user->id)}}">{{__('Profile')}}</a>
-                                    <a class="dropdown-item" href="#">{{__('Contracts')}}</a>
+                                    <a class="dropdown-item" href="{{route('mycontracts',$user->id)}}">{{__('Contracts')}}</a>
                                     @php($answer = new \App\Http\Controllers\PerfilController())
                                     @if($answer->searchprofilebyUserId(Auth::user()->id) == 'consumidor')
                                         <a class="dropdown-item" href="{{route('registerp',$user->id)}}">{{__('Register as a professional ')}}</a>
