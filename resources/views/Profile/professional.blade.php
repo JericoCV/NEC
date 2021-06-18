@@ -52,13 +52,24 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="servicegroup" class="col-md-4 col-form-label text-md-right">{{ __('Servicio') }}</label>
+                                <label for="servicegroup" class="col-md-4 col-form-label text-md-right">{{ __('Servicio / Ciudad') }}</label>
 
                                 <div class="col-md-6">
                                     <select class="form-control" id="servicegroup" name="servicegroup">
                                         @php($services = new \App\Http\Controllers\ServicioController())
                                         @foreach($services->showall() as $service)
-                                                <option value="{{$service->id}}">{{$service->servicename}}</option>
+                                            <option value="{{$service->id}}">{{$service->servicename}} /
+                                            @switch($service->city)
+                                                @case('huanuco')
+                                                    {{__('HUANUCO')}}</option>
+                                                    @break
+                                                @case('pillcomarca')
+                                                    {{__('PILLCO MARCA')}}</option>
+                                                    @break
+                                                @case('amarillis')
+                                                    {{__('AMARILLIS')}}</option>
+                                                    @break
+                                            @endswitch
                                         @endforeach
                                     </select>
 
