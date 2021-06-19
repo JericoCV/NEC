@@ -34,6 +34,7 @@ Route::get('/{servicio}/trabajadores',[ServicioController::class, 'service'])->n
 Route::get('{user}/profile',[UsersController::class, 'showuser'])->name('showuser');
 Route::get('{user}/editprofile',[UsersController::class, 'edituser'])->name('edituser');
 Route::put('{user}/profile',[UsersController::class, 'updateuser'])->name('updateuser');
+Route::get('{user}/worker_profile',[PerfilController::class,'workerdata'])->name('workerprofile');
 
 Route::get('{user}/register',[PerfilController::class, 'createprofile'])->name('registerp');
 Route::post('{user}/profilepro',[PerfilController::class, 'saveprofile'])->name('saveprofile');
@@ -45,4 +46,8 @@ Route::post('{worker}/contract',[ContratoController::class, 'savecontract'])->na
 
 Route::get('{contract}/view',[ContratoController::class, 'viewcontract'])->name('viewcontract');
 Route::get('{user}/contracts',[ContratoController::class, 'showcontractsbyUser'])->name('mycontracts');
+
+Route::get('{worker}/requests',[ContratoController::class, 'myrequests'])->name('requests');
+Route::get('{worker}/works',[ContratoController::class, 'myworks'])->name('works');
+Route::put('{request}/results',[ContratoController::class, 'requestresult'])->name('requestresult');
 

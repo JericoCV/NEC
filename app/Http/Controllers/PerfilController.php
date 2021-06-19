@@ -20,7 +20,8 @@ class PerfilController extends Controller
             'price' => 'required',
             'profession' => 'required',
             'servicegroup' => 'required',
-            'lastname' => 'required'
+            'lastname' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $perfil = new Perfil();
         $perfil->userid = $user->id;
@@ -30,6 +31,9 @@ class PerfilController extends Controller
         $perfil->profession = $request->profession;
         $perfil->workplace = $request->workplace;
         $perfil->schedule = $request->schedule;
+        $imageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
+        $perfil->image = $imageName;
         $perfil->info = $request->info;
         $perfil->price = $request->price;
         $perfil->save();
@@ -52,4 +56,13 @@ class PerfilController extends Controller
     public function showworker(Perfil $worker){
         return view('Profile.workerprofile',compact('worker'));
     }
+    public function workerdata(User $user){
+        $worker = Perfil::where('userid',$user->id)->first();
+        return view('Profile.myworkprofile', compact('worker'));
+    }
+    public static function findworkerbyId(int $id){
+        $worker = Perfil::where('userid',$id)->first();
+        return view('Profile.myworkprofile', compact('worker'));
+    }
+
 }

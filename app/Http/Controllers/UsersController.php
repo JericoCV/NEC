@@ -30,4 +30,9 @@ class UsersController extends Controller
         $user->save();
         return redirect()->route('showuser',compact('user'));
     }
+
+    public static function finduserbyId(int $id){
+        $result = User::where('id',$id)->first();
+        return $result;
+    }
 }

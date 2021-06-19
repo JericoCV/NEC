@@ -22,6 +22,7 @@ class ContratoController extends Controller
         $contract->adress = $request->adress;
         $contract->detalle = $request->detalle;
         $contract->price = 'Acordado entre el cliente y el trabajador';
+        $contract->estado = 'solicitud';
         $contract->save();
         return redirect()->route('showworker',$worker);
     }
@@ -32,5 +33,20 @@ class ContratoController extends Controller
 
     public function viewcontract(Contrato $contract){
         return view('Contract.viewcontract',compact('contract'));
+    }
+
+    public function myrequests(Perfil $worker){
+        $requests = Contrato::where('profileid',$worker->id)->where('estado','solicitud')->get();
+        return view('Contract.myrequests',compact('requests','worker'));
+    }
+    public function requestresult(Request $estado,Contrato $request){
+        $request->estado = $estado->estado;
+        $request->save();
+        $worker = Perfil::where('userid',$request->profileid)->first();
+        return redirect()->route('requests', $worker);
+    }
+    public function myworks(Perfil $worker){
+        $requests = Contrato::where('profileid',$worker->id)->where('estado','aceptado')->get();
+        return view('Contract.myworks',compact('requests','worker'));
     }
 }

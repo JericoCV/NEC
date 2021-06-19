@@ -7,7 +7,7 @@
                     <div class="card-header">{{ __('Registro para trabajadores') }}</div>
 
                     <div class="card-body">
-                        <form method="post" action="{{ route('saveprofile',$user) }}">
+                        <form method="post" action="{{ route('saveprofile',$user) }}"  enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -30,6 +30,26 @@
                                     <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname',$user->lastname) }}" required autocomplete="email">
 
                                     @error('lastname')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Sube una foto tuya') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="image" type="file" class="inputfile" name="image" value="{{ old('image') }}" style="
+                                    .inputfile {
+                                        width: 0.1px;
+                                        height: 0.1px;
+                                        opacity: 0;
+                                        overflow: hidden;
+                                        position: absolute;
+                                        z-index: -1;} ">
+
+                                    @error('image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -103,7 +123,7 @@
                                     @error('info')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    </span>price
+                                    </span>
                                     @enderror
                                 </div>
                             </div>
