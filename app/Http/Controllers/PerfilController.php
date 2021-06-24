@@ -64,5 +64,53 @@ class PerfilController extends Controller
         $worker = Perfil::where('userid',$id)->first();
         return view('Profile.myworkprofile', compact('worker'));
     }
+    public static function search(string $text){
+        $workers = Perfil::where('name','like', '%'.$text.'%')->orwhere('lastname','like', '%'.$text.'%')->get();
+        return $workers;
+    }
+
+    public function editworker(Perfil $worker){
+        return view('Profile.editprofile', compact('worker'));
+    }
+
+    public function updateworkprofile(Perfil $worker, Request $request){
+        $request->validate([
+            'name' => 'required',
+            'schedule' => 'required',
+            'info' => 'required',
+            'workplace' => 'required',
+            'price' => 'required',
+            'profession' => 'required',
+            'lastname' => 'required',
+        ]);
+        $worker->name = $request->name;
+        $worker->lastname = $request->lastname;
+        $worker->profession = $request->profession;
+        $worker->workplace = $request->workplace;
+        $worker->schedule = $request->schedule;
+        $worker->info = $request->info;
+        $worker->price = $request->price;
+        $worker->save();
+        return redirect()->route('home');
+    }
+
+    public function editworkphoto(Perfil $worker){
+        return view('Profile.editprofilephoto',compact('worker'));
+    }
+
+    public function updateworkphoto(Perfil $worker, Request $request){
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $imageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
+        $worker->image = $imageName;
+        $worker->save();
+        return redirect()->route('home');
+    }
+    public static function findworker(int $id){
+        $worker = Perfil::where('id',$id)->first();
+        return $worker;
+    }
 
 }

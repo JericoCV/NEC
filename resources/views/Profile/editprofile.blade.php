@@ -7,13 +7,14 @@
                     <div class="card-header">{{ __('Registro para trabajadores') }}</div>
 
                     <div class="card-body">
-                        <form method="post" action="{{ route('saveprofile',$user) }}"  enctype="multipart/form-data">
+                        <form method="post" action="{{route('updateworkprofile',$worker)}}"  enctype="multipart/form-data">
                             @csrf
+                            @method('put')
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name',$user->name)}}" required autocomplete="name" autofocus>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name',$worker->name)}}" required autocomplete="name" autofocus>
 
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -27,7 +28,7 @@
                                 <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Lastname') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname',$user->lastname) }}" required autocomplete="email">
+                                    <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname',$worker->lastname) }}" required autocomplete="email">
 
                                     @error('lastname')
                                     <span class="invalid-feedback" role="alert">
@@ -37,63 +38,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Sube una foto tuya') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="image" type="file" class="inputfile" name="image" onchange="loadFile(event)" value="{{ old('image') }}" style="
-                                    .inputfile {
-                                        width: 0.1px;
-                                        height: 0.1px;
-                                        opacity: 0;
-                                        overflow: hidden;
-                                        position: absolute;
-                                        z-index: -1;} ">
-                                    <img id="output" style="max-height: 100px"/>
-                                    @error('image')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
                                 <label for="profession" class="col-md-4 col-form-label text-md-right">{{ __('What is your job?') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="profession" type="text" class="form-control @error('profession') is-invalid @enderror" name="profession" value="{{ old('profession') }}" required autocomplete="email">
+                                    <input id="profession" type="text" class="form-control @error('profession') is-invalid @enderror" name="profession" value="{{ old('profession',$worker->profession) }}" required autocomplete="email">
 
                                     @error('profession')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="servicegroup" class="col-md-4 col-form-label text-md-right">{{ __('Servicio / Ciudad') }}</label>
-
-                                <div class="col-md-6">
-                                    <select class="form-control" id="servicegroup" name="servicegroup">
-                                        @php($services = new \App\Http\Controllers\ServicioController())
-                                        @foreach($services->showall() as $service)
-                                            <option value="{{$service->id}}">{{$service->servicename}} /
-                                            @switch($service->city)
-                                                @case('huanuco')
-                                                    {{__('HUANUCO')}}</option>
-                                                    @break
-                                                @case('pillcomarca')
-                                                    {{__('PILLCO MARCA')}}</option>
-                                                    @break
-                                                @case('amarillis')
-                                                    {{__('AMARILLIS')}}</option>
-                                                    @break
-                                            @endswitch
-                                        @endforeach
-                                    </select>
-
-                                    @error('servicegroup')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -105,7 +55,7 @@
                                 <label for="workplace" class="col-md-4 col-form-label text-md-right">{{ __('Workplace') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="workplace" type="text" class="form-control @error('workplace') is-invalid @enderror" name="workplace" value="{{ old('workplace') }}" required autocomplete="email">
+                                    <input id="workplace" type="text" class="form-control @error('workplace') is-invalid @enderror" name="workplace" value="{{ old('workplace',$worker->workplace) }}" required autocomplete="email">
 
                                     @error('workplace')
                                     <span class="invalid-feedback" role="alert">
@@ -118,7 +68,7 @@
                                 <label for="info" class="col-md-4 col-form-label text-md-right">{{ __('How do you work?') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="info" type="text" class="form-control @error('info') is-invalid @enderror" name="info" value="{{ old('info') }}" required autocomplete="email">
+                                    <input id="info" type="text" class="form-control @error('info') is-invalid @enderror" name="info" value="{{ old('info',$worker->info) }}" required autocomplete="email">
 
                                     @error('info')
                                     <span class="invalid-feedback" role="alert">
@@ -131,7 +81,7 @@
                                 <label for="schedule" class="col-md-4 col-form-label text-md-right">{{ __('Wich days do you work?') }}</label>
 
                                 <div class="col-md-6">
-                                    <textarea id="schedule" type="text" class="form-control @error('schedule') is-invalid @enderror h-100" name="schedule" value="{{ old('schedule') }}" required autocomplete="email"></textarea>
+                                    <textarea id="schedule" type="text" class="form-control @error('schedule') is-invalid @enderror h-100" name="schedule" value="{{ old('schedule',$worker->schedule) }}" required autocomplete="email"></textarea>
 
                                     @error('schedule')
                                     <span class="invalid-feedback" role="alert">
@@ -144,7 +94,7 @@
                                 <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('How much do you charge? (Hours/Work finished)') }}</label>
 
                                 <div class="col-md-6">
-                                    <textarea id="price" type="text" class="form-control @error('price') is-invalid @enderror h-100" name="price" value="{{ old('price') }}" required autocomplete="email"></textarea>
+                                    <textarea id="price" type="text" class="form-control @error('price') is-invalid @enderror h-100" name="price" value="{{ old('price',$worker->price) }}" required autocomplete="email"></textarea>
 
                                     @error('price')
                                     <span class="invalid-feedback" role="alert">
@@ -156,7 +106,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Registrar') }}
+                                        {{ __('Actualizar') }}
                                     </button>
                                 </div>
                             </div>

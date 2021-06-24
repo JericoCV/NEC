@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body style="min-height: 720px">
+<body style="min-height: 635px">
     <header style="position: fixed;">
         <nav class="navbar navbar-expand-md navbar-light shadow-sm"
              style="float:right;height:55px;width: 100%;position: fixed;left: 0;top: 0;
@@ -28,6 +28,15 @@
                 <a class="navbar-brand" href="{{ url('home') }}" style="color: white;">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                @if(isset(Auth::user()->id))
+                <form action="{{route('search')}}" method="post">
+                    @csrf
+                    <div class="input-group">
+                            <input name="busqueda" type="text" placeholder="Busca servicios o trabajadores" value="{{old('busqueda')}}" aria-label="Search" style="width: 300px; height: 40px; border: 0;border-radius: 6px 0px 0px 6px">
+                            <button type="submit" style="border: 0; border-radius: 0px 6px 6px 0px">Search</button>
+                    </div>
+                </form>
+                @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -97,4 +106,14 @@
     </section>
 
 </body>
+<script>
+    var loadFile = function(event) {
+        var reader = new FileReader();
+        reader.onload = function(){
+            var output = document.getElementById('output');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
+</script>
 </html>

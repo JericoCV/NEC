@@ -14,6 +14,7 @@
                             </div>
                         @endif
 
+                            {{__('Busca servicios cerca a tu ciudad') }}
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -33,6 +34,7 @@
                                     </div>
                                 </li>
                             </ul>
+                            <img src="{{asset('images/img_3.png')}}"width="100%"><br>
                             @foreach($servicio as $service)
                                 <label>
                                     <a href="{{route('showservice',$service)}}">{{$service->servicename}}</a><br>

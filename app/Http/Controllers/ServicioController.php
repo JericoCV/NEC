@@ -33,4 +33,8 @@ class ServicioController extends Controller
     public function service(Servicio $servicio){
         return view('Servicio.servicio', compact('servicio'));
     }
+    public static function search(string $text){
+        $services = Servicio::where('servicename','like', '%'.$text.'%')->get();
+        return $services;
+    }
 }

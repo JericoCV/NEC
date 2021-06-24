@@ -5,6 +5,8 @@ use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ContratoController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\EstadoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +42,11 @@ Route::get('{user}/register',[PerfilController::class, 'createprofile'])->name('
 Route::post('{user}/profilepro',[PerfilController::class, 'saveprofile'])->name('saveprofile');
 
 Route::get('{worker}/worker',[PerfilController::class, 'showworker'])->name('showworker');
+Route::get('{worker}/editworkprofile',[PerfilController::class, 'editworker'])->name('editworkerprofile');
+Route::put('{worker}/updateworkprofile',[PerfilController::class, 'updateworkprofile'])->name('updateworkprofile');
+Route::get('{worker}/editworkphoto',[PerfilController::class, 'editworkphoto'])->name('editworkphoto');
+Route::put('{worker}/updateworkphoto',[PerfilController::class, 'updateworkphoto'])->name('updateworkphoto');
+
 
 Route::get('{worker}/contract',[ContratoController::class, 'createcontract'])->name('createcontract');
 Route::post('{worker}/contract',[ContratoController::class, 'savecontract'])->name('savecontract');
@@ -51,3 +58,9 @@ Route::get('{worker}/requests',[ContratoController::class, 'myrequests'])->name(
 Route::get('{worker}/works',[ContratoController::class, 'myworks'])->name('works');
 Route::put('{request}/results',[ContratoController::class, 'requestresult'])->name('requestresult');
 
+Route::post('results',[SearchController::class, 'search'])->name('search');
+
+Route::delete('{contract}/delete',[ContratoController::class, 'deletecontract'])->name('deletecontract');
+
+Route::post('{worker}/valoration', [EstadoController::class, 'valorate'])->name('valorate');
+Route::put('{valoration}/update',[EstadoController::class, 'valorateupdate'])->name('valorateupdate');

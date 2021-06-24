@@ -49,4 +49,8 @@ class ContratoController extends Controller
         $requests = Contrato::where('profileid',$worker->id)->where('estado','aceptado')->get();
         return view('Contract.myworks',compact('requests','worker'));
     }
+    public function deletecontract(Contrato $contract){
+        $contract->delete();
+        return redirect()->route('home');
+    }
 }

@@ -8,11 +8,14 @@
 
                     <div class="card-body">
                         @foreach($contracts as $contract)
-                            <label>
-                                {{$contract->detalle}}<br>
-                                {{$contract->created_at}}
-                                <a href="{{route('viewcontract',$contract)}}">Show details</a>
-                            </label>
+                            <div>
+                                <label>
+                                    @php($worker = \App\Http\Controllers\PerfilController::findworker($contract->profileid))
+                                    {{$contract->detalle.' / '.$worker->name.' '.$worker->lastname}}<br>
+                                    {{$contract->created_at}}
+                                    <a href="{{route('viewcontract',$contract)}}">Show details</a>
+                                </label>
+                            </div>
                         @endforeach
                     </div>
                 </div>

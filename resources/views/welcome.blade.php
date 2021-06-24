@@ -39,10 +39,10 @@
             @endif
         </div>
         <div class="justify-center presentation" style="
-            height: 520px; width: 100%; display: flex; text-align: center;
+            height: 570px; width: 100%; display: flex; text-align: center;
             background-color: rgba(76,52,147,0.42); justify-items: center;
             color: white; font-family: Cambria; font-size: xxx-large">
-
+            <img src="images/img.png">
         </div>
     </body>
 </html>
