@@ -11,7 +11,7 @@
                             @php($client = \App\Http\Controllers\UsersController::finduserbyId($request->userid))
                             {{$client->name}}
                             {{$request->detalle}}
-                            <form action="{{route('requestresult',$worker,$request)}}" method="post">
+                            <form action="{{route('requestresult',$request,$worker)}}" method="post">
                                 @csrf
                                 @method('put')
                                 <select name="estado">

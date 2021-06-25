@@ -39,7 +39,7 @@ class ContratoController extends Controller
         $requests = Contrato::where('profileid',$worker->id)->where('estado','solicitud')->get();
         return view('Contract.myrequests',compact('requests','worker'));
     }
-    public function requestresult(Request $estado,Contrato $request){
+    public function requestresult(Contrato $request,Request $estado){
         $request->estado = $estado->estado;
         $request->save();
         $worker = Perfil::where('userid',$request->profileid)->first();
